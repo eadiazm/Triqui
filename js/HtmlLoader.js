@@ -1,4 +1,9 @@
-export class HtmlLoader{
+export class HtmlLoader {
+    /**
+     * Carga un html dentro de un elemento del html
+     * @param {*} elementId Elemento del html donde se desea cargar el html
+     * @param {*} url Dirección del html que se desea cargar en el elemento
+     */
     static loadHTML(elementId, url) {
         fetch(url)
             .then(response => response.text())
@@ -7,7 +12,10 @@ export class HtmlLoader{
     }
 }
 
-document.addEventListener("DOMContentLoaded", function() {
+/**
+ * Carga el header y footer del html
+ */
+document.addEventListener("DOMContentLoaded", function () {
     HtmlLoader.loadHTML('header', 'header.html');
     HtmlLoader.loadHTML('footer', 'footer.html');
 });

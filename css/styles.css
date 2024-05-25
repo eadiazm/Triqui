@@ -1,8 +1,10 @@
+/*Estilos de la tabla del triqui*/
 .triqui-board {
     border-collapse: collapse;
     margin: auto;
 }
 
+/*Estilos de las celdas de la tabla del triqui*/
 .triqui-board td {
     width: 100px;
     height: 100px;
@@ -14,6 +16,7 @@
     transition: background-color 0.3s;
 }
 
+/*Estilos de la tabla de estadísticas*/
 .triqui-statistics {
     border: 2px solid #000;
     text-align: center;
@@ -22,23 +25,28 @@
     transition: background-color 0.3s;
 }
 
+/*Estilos de la X y la O*/
 .token-style {
     font-size: 2em;
 }
 
+/*Estilos al pasar el mouse sobre una celda de la tabla del triqui*/
 .triqui-board td:hover {
     background-color: #f9f9f9;
 }
 
+/*Estilos al dar click sobre una celda de la tabla del triqui*/
 .triqui-board td:active {
     background-color: #e0e0e0;
 }
 
+/*Estilos de los mensajes de error*/
 #error-log {
     color: red;
     margin-top: 20px;
 }
 
+/*Estilos de los mensajes de éxito*/
 #success-log,
 #statistics-log {
     display: none;
@@ -52,6 +60,7 @@
     font-family: Arial, sans-serif;
 }
 
+/*Estilos de las celdas de las estadísticas*/
 #statistics-log td {
     border: 1px solid #c3e6cb;
 }
