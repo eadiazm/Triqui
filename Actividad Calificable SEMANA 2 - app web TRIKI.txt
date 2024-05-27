@@ -1,0 +1,29 @@
+Actividad calificable SEMANA2
+
+Desarrollar una aplicacion en javascript
+que funcione como el juego de TRIKI o 3
+en raya.
+
+reglas del negocio:
+1. debe tener 2 opciones :
+   - jugador vs jugador
+   - jugador vs maquina
+2. se debe controlar temas de quien gana, quien
+pierde y si se cierra el juego.
+3. los puntajes deben registrase en estructuras de 
+datos ya sea (listas,pilas , colas , etc..) 
+4. debo tener opcion de poder consultar por:
+  - jugador que mas partidas ha ganado
+  - jugador que mas partidas ha perdido
+  - juegos cerrados
+5. se debe utilizar HTML5, CSS y JS junto con temas
+de estructuras de datos tipo array/lista como 
+se encuncio anteriormente.
+
+INDIVIDUAL O EN GRUPO DE MAXIMO 3 PERSONAS
+
+Debe entregarse todo en la la ruta:
+ENTREGABLES/SEMANA2
+Como se hizo con la actividad de la SEMANA1
+creando la carpeta con con el nombre:
+TRIKI_nombre_de_integrantes
