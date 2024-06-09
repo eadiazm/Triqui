@@ -6,19 +6,19 @@ en raya.
 
 reglas del negocio:
 1. debe tener 2 opciones :
-   - jugador vs jugador
-   - jugador vs maquina
+   - jugador vs jugador -> OK
+   - jugador vs maquina	-> OK
 2. se debe controlar temas de quien gana, quien
-pierde y si se cierra el juego.
+pierde y si se cierra el juego. -> OK
 3. los puntajes deben registrase en estructuras de 
-datos ya sea (listas,pilas , colas , etc..) 
+datos ya sea (listas,pilas , colas , etc..)  -> OK
 4. debo tener opcion de poder consultar por:
-  - jugador que mas partidas ha ganado
-  - jugador que mas partidas ha perdido
-  - juegos cerrados
+  - jugador que mas partidas ha ganado -> OK
+  - jugador que mas partidas ha perdido -> OK
+  - juegos cerrados -> OK
 5. se debe utilizar HTML5, CSS y JS junto con temas
 de estructuras de datos tipo array/lista como 
-se encuncio anteriormente.
+se encuncio anteriormente. -> OK
 
 INDIVIDUAL O EN GRUPO DE MAXIMO 3 PERSONAS
 
