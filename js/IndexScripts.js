@@ -1,3 +1,4 @@
+import { IAComputador } from "./IAComputador.js";
 import { Jugador } from "./Jugador.js";
 import { ManejoMensajes } from "./ManejoMensajes.js";
 import { Tablero } from "./Tablero.js";
@@ -5,7 +6,8 @@ import { Tablero } from "./Tablero.js";
 let jugador1 = new Jugador('Jugador 1', 'X')
 let jugador2 = new Jugador('Jugador 2', 'O')
 
-let tablero = new Tablero(jugador1, jugador2);
+let juego = new Tablero(jugador1, jugador2);
+let ia = null;
 
 document.getElementById('txtJugador1').value = jugador1.nombre
 document.getElementById('txtJugador2').value = jugador2.nombre
@@ -45,21 +47,21 @@ function ClickCelda(celda) {
     const fila = clickedRow.id
     const col = clickedCell.id
 
-    let jugadorActual = tablero.ObtenerJugadorActual()
+    let jugadorActual = juego.ObtenerJugadorActual()
     let token = jugadorActual.token
 
-    tablero.PonerToken(fila, col)
+    juego.PonerToken(fila, col)
 
     if (clickedCell.textContent === '') {
         clickedCell.textContent = token;
     }
 
-    if (tablero.ObtenerHayGanador()) {
+    if (juego.ObtenerHayGanador()) {
         ManejoMensajes.showSuccessMessage(`${jugadorActual.nombre} ha ganado`)
         RefrescarEstadisticas()
     }
 
-    if (tablero.ObtenerHayEmpate()) {
+    if (juego.ObtenerHayEmpate()) {
         ManejoMensajes.showSuccessMessage(`La partida ha quedado empatada`)
         RefrescarEstadisticas()
     }
@@ -85,16 +87,16 @@ document.addEventListener('click', (e) => {
 });
 
 function ValidarJugadaComputador() {
-    if (tablero.ObtenerJugadorActual() === jugador2 && jugador2.esComputador) {
+    if (juego.ObtenerJugadorActual() === jugador2 && jugador2.esComputador) {
 
-        let posicion = tablero.ObtenerPosicionVacia();
+        let posicion = ia.EncontrarMejorJugada(juego.tablero);
 
         if (!posicion) {
             return
         }
 
         //levantar evento click en la celda que ocupe la posicion
-        const celdaAleatorea = document.querySelector(`tr[id="${posicion.fila}"] td[id="${posicion.col}"]`);
+        const celdaAleatorea = document.querySelector(`tr[id="${posicion[0]}"] td[id="${posicion[1]}"]`);
 
         const event = new Event('click');
         celdaAleatorea.dispatchEvent(event);
@@ -105,7 +107,7 @@ function ValidarJugadaComputador() {
  * Inicia una nueva partida
  */
 function IniciarNuevaPartida() {
-    tablero = new Tablero(jugador1, jugador2);
+    juego = new Tablero(jugador1, jugador2);
 
     cells.forEach(cell => {
         cell.textContent = ''
@@ -126,6 +128,7 @@ function SwitchJugarVsPc(chk) {
         txtJugador2.textContent = 'computador'
         jugador2Data.style.display = 'none'
         jugador2.esComputador = true
+        ia = new IAComputador()
     } else {
         txtJugador2.textContent = 'Jugador 2'
         jugador2Data.style.display = ''

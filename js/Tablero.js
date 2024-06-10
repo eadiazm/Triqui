@@ -116,14 +116,14 @@ export class Tablero {
      */
     ValidarGanador() {
 
-        this.hayGanador = this.ValidarGanadorPorJugador(this.jugador1)
+        this.hayGanador = this.ValidarGanadorPorJugador(this.jugador1.token)
         if (this.hayGanador) {
             this.jugador1.partidasGanadas++
             this.jugador2.partidasPerdidas++
             return `Ganador jugador ${this.jugador1.nombre}`
         }
 
-        this.hayGanador = this.ValidarGanadorPorJugador(this.jugador2)
+        this.hayGanador = this.ValidarGanadorPorJugador(this.jugador2.token)
         if (this.hayGanador) {
             this.jugador2.partidasGanadas++
             this.jugador1.partidasPerdidas++
@@ -155,58 +155,25 @@ export class Tablero {
      * @param {*} jugador : Jugador actual
      * @returns true si el judador actual ha ganado la partida
      */
-    ValidarGanadorPorJugador(jugador) {
+    ValidarGanadorPorJugador(token) {
 
-        let token = jugador.token
-        let ganador = true
+        const lines = [
+            [[0, 0], [0, 1], [0, 2]],
+            [[1, 0], [1, 1], [1, 2]],
+            [[2, 0], [2, 1], [2, 2]],
+            [[0, 0], [1, 0], [2, 0]],
+            [[0, 1], [1, 1], [2, 1]],
+            [[0, 2], [1, 2], [2, 2]],
+            [[0, 0], [1, 1], [2, 2]],
+            [[0, 2], [1, 1], [2, 0]],
+        ];
 
         //recorrer por fila
-        for (let fila = 0; fila <= 2; fila++) {
-            for (let col = 0; col <= 2; col++) {
-                if (this.tablero[fila][col] !== token) {
-                    ganador = false
-                }
-            }
-
-            if (ganador) {
-                return true
-            }
-
-            ganador = true
-        }
-
-        //recorrer por columna
-        for (let fila = 0; fila <= 2; fila++) {
-            for (let col = 0; col <= 2; col++) {
-                if (this.tablero[col][fila] !== token) {
-                    ganador = false
-                }
-            }
-
-            if (ganador) {
-                return true
-            }
-
-            ganador = true
-        }
-
-        //diagonal principal
-        if (this.tablero[0][0] === token
-            && this.tablero[1][1] === token
-            && this.tablero[2][2] === token
-        ) {
-            return true
-        }
-
-        //diagonal secundaria
-        if (this.tablero[0][2] === token
-            && this.tablero[1][1] === token
-            && this.tablero[2][0] === token
-        ) {
-            return true
-        }
-
-        return false
+        return lines.some(([a, b, c]) =>
+            this.tablero[a[0]][a[1]] === token &&
+            this.tablero[a[0]][a[1]] === this.tablero[b[0]][b[1]] &&
+            this.tablero[a[0]][a[1]] === this.tablero[c[0]][c[1]]
+        );
     }
 
     /**
