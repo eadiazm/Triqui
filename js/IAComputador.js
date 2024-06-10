@@ -39,6 +39,13 @@ export class IAComputador {
         let bestVal = -1000;
         let bestMove = -1;
 
+        // Heurística para la primera jugada
+        if (this.EsPrimerMovimiento(tablero)) {
+            if (tablero[4] === '') {
+                return this.positions[4]; // El centro es la posición 4 en un arreglo lineal de 9 elementos
+            }
+        }
+
         for (let i = 0; i < tablero.length; i++) {
             if (tablero[i] === '') {
                 tablero[i] = 'O';
@@ -84,6 +91,17 @@ export class IAComputador {
             return best;
         }
 
+    }
+
+    EsPrimerMovimiento(board) {
+        // Verifica si es la primera jugada
+        let moveCount = 0;
+        for (let i = 0; i < 9; i++) {
+            if (board[i] !== '') {
+                moveCount++;
+            }
+        }
+        return moveCount <= 1;
     }
 
     CalcularGanador(tablero) {
