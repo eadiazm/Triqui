@@ -7,6 +7,8 @@ let jugador1 = new Jugador('Jugador 1', 'X')
 let jugador2 = new Jugador('Jugador 2', 'O')
 
 let juego = new Tablero(jugador1, jugador2);
+let jugadorInicial = juego.ObtenerJugadorActual();
+
 let ia = null;
 
 document.getElementById('txtJugador1').value = jugador1.nombre
@@ -107,6 +109,7 @@ function ValidarJugadaComputador() {
  * Inicia una nueva partida
  */
 function IniciarNuevaPartida() {
+
     juego = new Tablero(jugador1, jugador2);
 
     cells.forEach(cell => {
@@ -114,6 +117,14 @@ function IniciarNuevaPartida() {
     });
 
     OcultaMensajes()
+
+    if (jugadorInicial === juego.ObtenerJugadorActual()) {
+        juego.CambiarJugador()
+    }
+
+    jugadorInicial = juego.ObtenerJugadorActual()
+
+    ValidarJugadaComputador()
 }
 
 /**
@@ -136,6 +147,7 @@ function SwitchJugarVsPc(chk) {
     }
 
     jugador2.nombre = txtJugador2.textContent
+    IniciarNuevaPartida()
     RefrescarEstadisticas()
 }
 
